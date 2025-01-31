@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Gas Prices Visualization</title>
+    <!-- Include Vega and Vega-Lite libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.0"></script>
+</head>
+<body>
+    <h1>Natural Gas Prices Visualization</h1>
+    <div id="vis"></div>
+    
+    <script type="text/javascript">
+        // Make sure the JSON file path is correct here
+        var yourData = 'natural_gas_prices.json';  // Path to your JSON file
+        
+        vegaEmbed('#vis', {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "data": {
+                "url": yourData
+            },
+            "mark": "line",
+            "encoding": {
+                "x": {
+                    "field": "Date",
+                    "type": "temporal",
+                    "title": "Date"
+                },
+                "y": {
+                    "field": "Price",
+                    "type": "quantitative",
+                    "title": "Price (USD)"
+                }
+            },
+            "title": "Monthly Natural Gas Prices"
+        }).catch(console.error);
+    </script>
+</body>
+</html>
